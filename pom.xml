@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.beust</groupId>
   <artifactId>jcommander</artifactId>
-  <version>1.82.1-osera-00001</version>
+  <version>1.82.2-osera-00002</version>
   <packaging>jar</packaging>
   <name>jcommander</name>
   <description>Command line parsing (OSERA patched build of 1.82)</description>

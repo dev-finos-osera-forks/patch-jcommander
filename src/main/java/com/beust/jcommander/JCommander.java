@@ -455,7 +455,15 @@ public class JCommander {
 
             if (arg.startsWith("@") && options.expandAtSign) {
                 String fileName = arg.substring(1);
-                vResult1.addAll(readFile(fileName));
+                // OSERA patch for CVE-2026-90014 (DEV ONLY, an invented flaw): an argument read from an
+                // @ file is held to the same length limit as one given on the command line.
+                for (String fromFile : readFile(fileName)) {
+                    if (fromFile != null && fromFile.length() > MAX_ARGUMENT_LENGTH) {
+                        throw new ParameterException("an argument in " + fileName + " is longer than "
+                                + MAX_ARGUMENT_LENGTH + " characters");
+                    }
+                    vResult1.add(fromFile);
+                }
             } else {
                 List<String> expanded = expandDynamicArg(arg);
                 vResult1.addAll(expanded);
