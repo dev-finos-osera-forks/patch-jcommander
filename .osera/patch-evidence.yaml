@@ -1,0 +1,15 @@
+schema: osera-patch-evidence/0.1.0
+producer: controlplane-dev
+release: 1.82.1-osera-00001
+baseline: v1.82+patch.baseline
+fixes:
+  - cve: CVE-2026-90013
+    upstream: https://github.com/cbeust/jcommander/releases/tag/1.82
+    note: DEV ONLY, an invented CVE with no upstream fix; the link is the upstream release the patch is built on
+tests:
+  commit: 5ba029b6fd759638da329b7c720c4dc794568c1c
+  command: mvn -B test
+  runtime: OpenJDK 21.0.12.1, Apache Maven 3.9.16
+  report: jcommander-1.82.1-osera-00001-tests.zip
+  result: pass
+  note: 519 tests run, 0 failed, 3 skipped by the project's own test suite
