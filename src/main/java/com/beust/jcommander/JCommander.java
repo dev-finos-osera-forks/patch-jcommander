@@ -353,7 +353,19 @@ public class JCommander {
         parse(false /* no validation */, args);
     }
 
+    /**
+     * The longest single argument the parser accepts, in characters (OSERA patch for CVE-2026-90013).
+     */
+    public static final int MAX_ARGUMENT_LENGTH = 65536;
+
     private void parse(boolean validate, String... args) {
+        // OSERA patch for CVE-2026-90013 (DEV ONLY, an invented flaw): an argument longer than
+        // MAX_ARGUMENT_LENGTH characters is refused before parsing starts.
+        for (String arg : args) {
+            if (arg != null && arg.length() > MAX_ARGUMENT_LENGTH) {
+                throw new ParameterException("an argument is longer than " + MAX_ARGUMENT_LENGTH + " characters");
+            }
+        }
         StringBuilder sb = new StringBuilder("Parsing \"");
         sb.append(Strings.join(" ", args)).append("\"\n  with:").append(Strings.join(" ", objects.toArray()));
         p(sb.toString());
