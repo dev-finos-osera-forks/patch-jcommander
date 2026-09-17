@@ -1,15 +1,15 @@
 schema: osera-patch-evidence/0.1.0
 producer: controlplane-dev
-release: 1.82.3-osera-00003
+release: 1.82.4-osera-00004
 baseline: v1.82+patch.baseline
 fixes:
   - cve: CVE-2026-90014
     upstream: https://github.com/cbeust/jcommander/releases/tag/1.82
     note: DEV ONLY, an invented CVE with no upstream fix; the link is the upstream release the patch is built on
 tests:
-  commit: 9f675713d645344bacfc5a62223a7b6ab9afb874
+  commit: 9b83bb9b354c8a8758ebd6a4ff63d3b234b6c84f
   command: mvn -B clean test
   runtime: OpenJDK 21.0.12.1, Apache Maven 3.9.16
-  report: jcommander-1.82.3-osera-00003-tests.zip
+  report: jcommander-1.82.4-osera-00004-tests.zip
   result: pass
-  note: 261 tests in the project's suite, 258 run, 0 failed, 3 skipped by the suite itself; 00003 is the 00002 fix released again with the producer's OpenPGP signatures on jar and pom, no code change
+  note: 261 tests in the project's suite, 258 run, 0 failed, 3 skipped by the suite itself; 00004 is the 00003 fix released again with a CycloneDX document alongside the jar, no code change
